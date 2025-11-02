@@ -1,7 +1,8 @@
 
-async function getPeople() {
+async function getWeather() {
 	try {
-		const response = await fetch("https://randomuser.me/api/?results=25&nat=us");
+		const response = await fetch("https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m&temperature_unit=fahrenheit" 
+);
 		if (!response.ok) {
 			throw new Error(`HTTP Error: ${response.status}`);
         }
@@ -13,11 +14,14 @@ async function getPeople() {
 }
 
 async function buildTable() {
-	try {
-		const data = await getPeople();
-		const users = data.results;
-
-		users.sort((a, b) => {
+	//try {
+	
+		const data = await getWeather();
+		//const weather = data.results;
+		console.log(data.latitude)
+		console.log(`${data.current_units.temperature_2m}`)
+		
+		/*users.sort((a, b) => {
             const lastNameA = a.name.last.toLowerCase();
         	const lastNameB = b.name.last.toLowerCase();
         	return lastNameA.localeCompare(lastNameB);
@@ -70,5 +74,5 @@ async function buildTable() {
 	} catch (e) {
 		console.log("Error " + e);
 	}
-}
+}*/ }
 buildTable();

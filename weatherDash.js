@@ -1,12 +1,14 @@
 
 async function getWeather() {
 	try {
-		const response = await fetch("https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m&temperature_unit=fahrenheit" 
+		const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude.value}&longitude=13.41&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m&temperature_unit=fahrenheit` 
 );
+	console.log(`https://api.open-meteo.com/v1/forecast?latitude=${latitude.value}&longitude=13.41&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m&temperature_unit=fahrenheit`);
 		if (!response.ok) {
 			throw new Error(`HTTP Error: ${response.status}`);
         }
 		const data = await response.json();
+		console.log(data.hourly.temperature_2m[0])
 		return data;
 	} catch (error) {
 		console.error(`Could not get names: ${error}`);
@@ -75,4 +77,15 @@ async function buildTable() {
 		console.log("Error " + e);
 	}
 }*/ }
-buildTable();
+$(document).ready(function() {
+  $('#forcastButton').click(function() {
+	if ($(this).attr('value') == 'Forcast'){
+	    $(this).attr('value', 'Historical Data'); 
+	}
+	else {
+		$(this).attr('value', 'Forcast'); 
+	};
+  });
+});
+
+//buildTable();

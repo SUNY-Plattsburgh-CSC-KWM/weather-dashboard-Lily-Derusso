@@ -26,6 +26,16 @@
       <input type="button" id="forcastButton" value="Forcast">
     </form>
     <br>
+    <div id="forcast/history" style="display: flex;">
+    <div id="forcast">
+      <h2>Forcast Data</h2>
+      <input type="Text" placeholder="forcast">
+    </div>
+    <div id="historical">
+      <h2>Historical Data</h2>
+      <input type="text" placeholder="history">
+    </div>
+    </div>
     <button for="weatherChoices" type="submit" onclick="console.log(`${latitude.value}, ${longitude.value}`), getWeather()">Submit</button>
   </form>
 
